@@ -65,6 +65,23 @@ fn main() {
                 }
                 println!("[ RS ] handling renderer commands took: {:?}", t.elapsed());
             }
+
+            {
+                let t = std::time::Instant::now();
+                let mut buffer_borrow = buffer.borrow_mut();
+                for _ in 0..3300 {
+                    buffer_borrow.data.push(RendererCommand::DrawRectangle {
+                        position: (0.0, 0.0, 0.0),
+                        color: (255, 255, 255, 255),
+                    });
+                }
+
+                println!(
+                    "[ RS ] Doing the same as game_render does but in rust took: {:?}",
+                    t.elapsed()
+                );
+                buffer_borrow.data.clear();
+            }
         }
     });
 }
