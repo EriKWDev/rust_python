@@ -1,0 +1,12 @@
+[workspace]
+members = [
+  "runner"
+]
+
+default-members = [
+  "runner"
+]
+
+[workspace.dependencies]
+pyo3 = { version="*", features = ["auto-initialize"] }
+
